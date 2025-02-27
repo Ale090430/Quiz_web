@@ -1,0 +1,15 @@
+body{
+    background-image: url('nori.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-image: url('ca95b9841d17b962ee9054d232df1aa1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }

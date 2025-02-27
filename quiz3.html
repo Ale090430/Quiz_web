@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Întrebare 3</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="imagine3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Capitalele Europei</h1>
+    <div class="slide active-slide">
+      <h2>Care este capitala Frantei?</h2>
+      <form>
+        <input type="radio" id="riQuestion0_1" name="riQuestion0" value="Londra" > Londra<br>
+        <input type="radio" id="riQuestion0_2" name="riQuestion0" value="Belgrad"> Belgrad<br>
+        <input type="radio" id="riQuestion0_3" name="riQuestion0" value="Paris"> Paris<br>
+        <input type="radio" id="riQuestion0_4" name="riQuestion0" value="Roma"> Roma<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este capitala Italiei?</h2>
+      <form>
+        <input type="radio" id="riQuestion1" name="riQuestion1" value="Praga"> Praga<br>
+        <input type="radio" id="riQuestion2" name="riQuestion1" value="Roma"> Roma<br>
+        <input type="radio" id="riQuestion3" name="riQuestion1" value="Viena"> Viena<br>
+        <input type="radio" id="riQuestion4" name="riQuestion1" value="Vatican"> Vatican<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este capitala Greciei?</h2>
+      <form>
+        <input type="radio" id="riQuestion5_1" name="riQuestion5" value="Thasos"> Thasos<br>
+        <input type="radio" id="riQuestion5_2" name="riQuestion5" value="Atena"> Atena<br>
+        <input type="radio" id="riQuestion5_3" name="riQuestion5" value="Santorini"> Santorini<br>
+        <input type="radio" id="riQuestion5_4" name="riQuestion5" value="Corfu"> Corfu<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este capitala Romaniei?</h2>
+      <form>
+        <input type="radio" id="riQuestion6_1" name="riQuestion6" value="Bucuresti"> Bucuresti<br>
+        <input type="radio" id="riQuestion6_2" name="riQuestion6" value="Iasi"> Iasi<br>
+        <input type="radio" id="riQuestion6_3" name="riQuestion6" value="Timisoara"> Timisoara<br>
+        <input type="radio" id="riQuestion6_4" name="riQuestion6" value="Arad"> Arad<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este capitala Belgiei?</h2>
+      <form>
+        <input type="radio" id="riQuestion7_1" name="riQuestion7" value="Gent"> Gent<br>
+        <input type="radio" id="riQuestion7_2" name="riQuestion7" value="Bruxelles"> Bruxelles<br>
+        <input type="radio" id="riQuestion7_3" name="riQuestion7" value=" Louvain"> Louvain<br>
+        <input type="radio" id="riQuestion7_4" name="riQuestion7" value="Mons"> Mons<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>care este capitala Spaniei?</h2>
+      <form>
+        <input type="radio" id="riQuestion8_1" name="riQuestion8" value="Valencia"> Valencia<br>
+        <input type="radio" id="riQuestion8_2" name="riQuestion8" value="Madrid"> Madrid<br>
+        <input type="radio" id="riQuestion8_3" name="riQuestion8" value="Barcelona"> Barcelona<br>
+        <input type="radio" id="riQuestion8_4" name="riQuestion8" value=" Palencia"> Palencia<br>
+      </form>
+    </div>
+
+    <div class="navigation-buttons">
+      <button id="prevButton">Previous</button>
+      <button id="nextButton">Next</button>
+    </div>
+
+    <button id="riCheckanswer" class="riHide">Check Answer</button>
+    <div id="riCorrect" class="riHide ri-alert-success">Corect felicitari!</div>
+    <div id="riPartial" class="riHide ri-alert-partial">Partial corect mai incearca!</div>
+    <div id="riIncorrect" class="riHide ri-alert-danger">Incorect poti mai mult! </div>
+    <div id="riScore" class="riHide">Your score: <span id="riScoreValue"></span>/6</div>
+    <div class="icon-nav">
+      <a href="quiz2.html"><i class="fas fa-arrow-left"></i> Inapoi la quizul 2</a> |
+      <a href="Meniu.php">Inapoi la meniu <i class="fas fa-arrow-right"></i></a>
+  </div>
+  </div>
+
+  <script>
+    (function() {
+      var currentSlide = 0;
+      var slides = document.querySelectorAll('.slide');
+      var totalSlides = slides.length;
+
+      function updateButtons() {
+        document.getElementById('prevButton').style.display = currentSlide === 0 ? 'none' : 'inline-block';
+        document.getElementById('nextButton').style.display = currentSlide === totalSlides - 1 ? 'none' : 'inline-block';
+        document.getElementById('riCheckanswer').style.display = currentSlide === totalSlides - 1 ? 'inline-block' : 'none';
+      }
+
+      updateButtons();
+
+      document.getElementById('nextButton').addEventListener('click', function() {
+        slides[currentSlide].classList.remove('active-slide');
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].classList.add('active-slide');
+        updateButtons();
+      });
+
+      document.getElementById('prevButton').addEventListener('click', function() {
+        slides[currentSlide].classList.remove('active-slide');
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active-slide');
+        updateButtons();
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && currentSlide === totalSlides - 1) {
+          fnCheckAnswer();
+          calculateScore();
+        }
+      });
+
+      document.getElementById('riCheckanswer').addEventListener('click', function() {
+        fnCheckAnswer();
+        calculateScore();
+      });
+
+      function fnCheckAnswer() {
+        document.getElementById('riCorrect').classList.add('riHide');
+        document.getElementById('riIncorrect').classList.add('riHide');
+
+        var FrantaQ1 = document.querySelector('input[name="riQuestion0"]:checked');
+        var ItaliaQ = document.querySelector('input[name="riQuestion1"]:checked');
+        var GreciaQ = document.querySelector('input[name="riQuestion5"]:checked');
+        var RomaniaQ = document.querySelector('input[name="riQuestion6"]:checked');
+        var BelgiaQ = document.querySelector('input[name="riQuestion7"]:checked');
+        var SpaniaQ = document.querySelector('input[name="riQuestion8"]:checked');
+
+        if (FrantaQ1 && FrantaQ1.value === "Paris" &&  ItaliaQ && ItaliaQ.value === "Roma" && GreciaQ && GreciaQ.value === "Atena" && RomaniaQ && RomaniaQ.value === "Bucuresti" && BelgiaQ && BelgiaQ.value === "Bruxelles" && SpaniaQ && SpaniaQ.value === "Madrid") {
+          document.getElementById('riCorrect').classList.remove('riHide');
+        } else {
+          document.getElementById('riIncorrect').classList.remove('riHide');
+        }
+      }
+
+      function calculateScore() {
+        var score = 0;
+        var FrantaQ1 = document.querySelector('input[name="riQuestion0"]:checked');
+        var ItaliaQ = document.querySelector('input[name="riQuestion1"]:checked');
+        var GreciaQ = document.querySelector('input[name="riQuestion5"]:checked');
+        var RomaniaQ = document.querySelector('input[name="riQuestion6"]:checked');
+        var BelgiaQ = document.querySelector('input[name="riQuestion7"]:checked');
+        var SpaniaQ = document.querySelector('input[name="riQuestion8"]:checked');
+
+        if (FrantaQ1 && FrantaQ1.value === "Paris") score += 1;
+        if (ItaliaQ && ItaliaQ.value === "Roma") score += 1;
+        if (GreciaQ && GreciaQ.value === "Atena") score += 1;
+        if (RomaniaQ && RomaniaQ.value === "Bucuresti") score += 1;
+        if (BelgiaQ && BelgiaQ.value === "Bruxelles") score += 1;
+        if (SpaniaQ && SpaniaQ.value === "Madrid") score += 1;
+
+        document.getElementById('riScore').classList.remove('riHide');
+        document.getElementById('riScoreValue').innerText = score;
+
+        
+        document.getElementById('riCorrect').classList.add('riHide');
+        document.getElementById('riPartial').classList.add('riHide');
+        document.getElementById('riIncorrect').classList.add('riHide');
+
+        if (score < 3) {
+          document.getElementById('riIncorrect').classList.remove('riHide');
+      } else if (score >= 3 && score < 6) {
+          document.getElementById('riPartial').classList.remove('riHide');
+      } else if (score === 6) {
+          document.getElementById('riCorrect').classList.remove('riHide');
+      }
+      }
+    })();
+  </script>
+</body>
+</html>
+
+

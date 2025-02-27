@@ -1,0 +1,121 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+label {
+  color: #555;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #3b80f7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #4284ff;
+}
+
+.riHide {
+  display: none;
+}
+
+.ri-alert-success {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #d4edda;
+  color: #155719;
+  border-radius: 5px;
+}
+
+.ri-alert-partial{
+  padding:10px 20px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #fffb0290;
+  color: #f3b311;;
+  border-radius: 5px;
+}
+
+.ri-alert-danger {
+  padding: 10px 20px;
+  margin-top: 20px;
+  background-color: #ce2b397c;
+  color: #c83342;
+  border-radius: 5px;
+}
+
+.slide {
+  display: none;
+}
+
+.active-slide {
+  display: block;
+}
+
+.navigation-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  color: #3498db;
+  text-decoration: none;
+  font-size: 16px;
+}
+.icon-link i {
+  margin-right: 8px; /* Spațiu între iconiță și text */
+}
+.icon-link:hover {
+  color: #2980b9;
+}
+.icon-nav a {
+  display: inline-flex;
+  align-items: center;
+  color: #3498db;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
+.icon-nav a i {
+  margin-right: 8px; /* Spațiu între iconiță și text */
+}
+.icon-nav a:hover {
+  color: #2980b9;
+}
+.icon-nav {
+  font-family: Arial, sans-serif; /* Font personalizat */
+}

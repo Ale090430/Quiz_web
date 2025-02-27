@@ -1,0 +1,31 @@
+body{
+    background-image: url('0facd5d61703fe35466b1f785b5bac04.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-image: url('funy.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h2 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+  h1{
+    color:#ffffff
+  }
+  form {
+    margin-bottom: 20px;
+    color:#ffffff
+  }
+  .riSoreValue{
+    color:#ffffff;
+  }

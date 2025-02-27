@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Întrebare 2</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="imagini2.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+  <div class="container">
+    <h1>Intrebari despre muzica</h1>
+    <div class="slide active-slide">
+      <h2>Alege 3 albume care sunt cele mai bine vandute in Australia?</h2>
+      <form>
+        <input type="radio" id="riItem1"> Bat out of Hell - Meatloaf<br>
+        <input type="radio" id="riItem2"> Whispering Jack John Farmham<br>
+        <input type="radio" id="riItem3"> 5 to 4 - Empire Between<br>
+        <input type="radio" id="riItem4"> Back in Black - AC/DC<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este cantaretul principal in AC/DC?</h2>
+      <form>
+        <input type="radio" id="riQuestion1" name="riQuestion1" value="Brian Johnson"> Brian Johnson<br>
+        <input type="radio" id="riQuestion2" name="riQuestion1" value="Bon Scott"> Bon Scott<br>
+        <input type="radio" id="riQuestion3" name="riQuestion1" value="Angus Young"> Angus Young<br>
+        <input type="radio" id="riQuestion4" name="riQuestion1" value="Phil Rudd"> Phil Rudd<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Ce trupa a lansat albumul "Dark Side of the Moon"?</h2>
+      <form>
+        <input type="radio" id="riQuestion5_1" name="riQuestion5" value="Led Zeppelin"> Led Zeppelin<br>
+        <input type="radio" id="riQuestion5_2" name="riQuestion5" value="Pink Floyd"> Pink Floyd<br>
+        <input type="radio" id="riQuestion5_3" name="riQuestion5" value="The Beatles"> The Beatles<br>
+        <input type="radio" id="riQuestion5_4" name="riQuestion5" value="The Rolling Stones"> The Rolling Stones<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care este cel mai bine vandut album din toate timpurile?</h2>
+      <form>
+        <input type="radio" id="riQuestion6_1" name="riQuestion6" value="Thriller"> Thriller by Michael Jackson<br>
+        <input type="radio" id="riQuestion6_2" name="riQuestion6" value="Back in Black"> Back in Black by AC/DC<br>
+        <input type="radio" id="riQuestion6_3" name="riQuestion6" value="The Dark Side of the Moon"> The Dark Side of the Moon by Pink Floyd<br>
+        <input type="radio" id="riQuestion6_4" name="riQuestion6" value="Led Zeppelin IV"> Led Zeppelin IV by Led Zeppelin<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Cine este adesea numit "Regele pop-ului"?</h2>
+      <form>
+        <input type="radio" id="riQuestion7_1" name="riQuestion7" value="Elvis Presley"> Elvis Presley<br>
+        <input type="radio" id="riQuestion7_2" name="riQuestion7" value="Michael Jackson"> Michael Jackson<br>
+        <input type="radio" id="riQuestion7_3" name="riQuestion7" value="Prince"> Prince<br>
+        <input type="radio" id="riQuestion7_4" name="riQuestion7" value="David Bowie"> David Bowie<br>
+      </form>
+    </div>
+
+    <div class="slide">
+      <h2>Care trupa a conpus piesa "Bohemian Rhapsody"?</h2>
+      <form>
+        <input type="radio" id="riQuestion8_1" name="riQuestion8" value="Led Zeppelin"> Led Zeppelin<br>
+        <input type="radio" id="riQuestion8_2" name="riQuestion8" value="The Beatles"> The Beatles<br>
+        <input type="radio" id="riQuestion8_3" name="riQuestion8" value="Queen"> Queen<br>
+        <input type="radio" id="riQuestion8_4" name="riQuestion8" value="Pink Floyd"> Pink Floyd<br>
+      </form>
+    </div>
+
+    <div class="navigation-buttons">
+      <button id="prevButton">Previous</button>
+      <button id="nextButton">Next</button>
+    </div>
+
+    <button id="riCheckanswer" class="riHide">Check Answer</button>
+    <div id="riCorrect" class="riHide ri-alert-success">Corect felicitari!</div>
+    <div id="riPartial" class="riHide ri-alert-partial">Partial corect mai incearca!</div>
+    <div id="riIncorrect" class="riHide ri-alert-danger">Incorect poti mai mult! </div>
+    <div id="riScore" class="riHide" style="color: aliceblue;">Your score: <span id="riScoreValue"></span>/6</div>
+    <div class="icon-nav">
+      <a href="quiz1.html"><i class="fas fa-arrow-left"></i> Inapoi la quizul 1</a> |
+      <a href="quiz3.html">Urmatorul quiz <i class="fas fa-arrow-right"></i></a>
+  </div>
+  </div>
+
+  <script>
+    (function() {
+      var currentSlide = 0;
+      var slides = document.querySelectorAll('.slide');
+      var totalSlides = slides.length;
+
+      function updateButtons() {
+        document.getElementById('prevButton').style.display = currentSlide === 0 ? 'none' : 'inline-block';
+        document.getElementById('nextButton').style.display = currentSlide === totalSlides - 1 ? 'none' : 'inline-block';
+        document.getElementById('riCheckanswer').style.display = currentSlide === totalSlides - 1 ? 'inline-block' : 'none';
+      }
+
+      updateButtons();
+
+      document.getElementById('nextButton').addEventListener('click', function() {
+        slides[currentSlide].classList.remove('active-slide');
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].classList.add('active-slide');
+        updateButtons();
+      });
+
+      document.getElementById('prevButton').addEventListener('click', function() {
+        slides[currentSlide].classList.remove('active-slide');
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        slides[currentSlide].classList.add('active-slide');
+        updateButtons();
+      });
+
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' && currentSlide === totalSlides - 1) {
+          fnCheckAnswer();
+          calculateScore();
+        }
+      });
+
+      document.getElementById('riCheckanswer').addEventListener('click', function() {
+        fnCheckAnswer();
+        calculateScore();
+      });
+
+      function fnCheckAnswer() {
+        document.getElementById('riCorrect').classList.add('riHide');
+        document.getElementById('riIncorrect').classList.add('riHide');
+
+        var albumQ1 = document.getElementById('riItem1').checked;
+        var albumQ2 = document.getElementById('riItem2').checked;
+        var albumQ3 = document.getElementById('riItem3').checked;
+        var albumQ4 = document.getElementById('riItem4').checked;
+        var singerQ = document.querySelector('input[name="riQuestion1"]:checked');
+        var darkSideQ = document.querySelector('input[name="riQuestion5"]:checked');
+        var bestSellingAlbumQ = document.querySelector('input[name="riQuestion6"]:checked');
+        var kingOfPopQ = document.querySelector('input[name="riQuestion7"]:checked');
+        var bohemianRhapsodyQ = document.querySelector('input[name="riQuestion8"]:checked');
+
+        if (albumQ1 && albumQ2 && !albumQ3 && albumQ4 && singerQ && singerQ.value === "Bon Scott" && darkSideQ && darkSideQ.value === "Pink Floyd" && bestSellingAlbumQ && bestSellingAlbumQ.value === "Thriller" && kingOfPopQ && kingOfPopQ.value === "Michael Jackson" && bohemianRhapsodyQ && bohemianRhapsodyQ.value === "Queen") {
+          document.getElementById('riCorrect').classList.remove('riHide');
+        } else {
+          document.getElementById('riIncorrect').classList.remove('riHide');
+        }
+      }
+
+      function calculateScore() {
+        var score = 0;
+        var albumQ1 = document.getElementById('riItem1').checked;
+        var albumQ2 = document.getElementById('riItem2').checked;
+        var albumQ3 = document.getElementById('riItem3').checked;
+        var albumQ4 = document.getElementById('riItem4').checked;
+        var singerQ = document.querySelector('input[name="riQuestion1"]:checked');
+        var darkSideQ = document.querySelector('input[name="riQuestion5"]:checked');
+        var bestSellingAlbumQ = document.querySelector('input[name="riQuestion6"]:checked');
+        var kingOfPopQ = document.querySelector('input[name="riQuestion7"]:checked');
+        var bohemianRhapsodyQ = document.querySelector('input[name="riQuestion8"]:checked');
+
+        if (albumQ1 && albumQ2 && !albumQ3 && albumQ4) score += 1;
+        if (singerQ && singerQ.value === "Bon Scott") score += 1;
+        if (darkSideQ && darkSideQ.value === "Pink Floyd") score += 1;
+        if (bestSellingAlbumQ && bestSellingAlbumQ.value === "Thriller") score += 1;
+        if (kingOfPopQ && kingOfPopQ.value === "Michael Jackson") score += 1;
+        if (bohemianRhapsodyQ && bohemianRhapsodyQ.value === "Queen") score += 1;
+
+        document.getElementById('riScore').classList.remove('riHide');
+        document.getElementById('riScoreValue').innerText = score;
+
+        
+        document.getElementById('riCorrect').classList.add('riHide');
+        document.getElementById('riPartial').classList.add('riHide');
+        document.getElementById('riIncorrect').classList.add('riHide');
+
+        if (score < 3) {
+          document.getElementById('riIncorrect').classList.remove('riHide');
+      } else if (score >= 3 && score < 6) {
+          document.getElementById('riPartial').classList.remove('riHide');
+      } else if (score === 6) {
+          document.getElementById('riCorrect').classList.remove('riHide');
+      }
+      }
+    })();
+  </script>
+</body>
+</html>

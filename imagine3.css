@@ -1,0 +1,15 @@
+body{
+    background-image: url('c7aa51b5aa18908da689427022b90651.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-image: url('ea430d44b5463735cd59b1cf1de8dbd8.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
